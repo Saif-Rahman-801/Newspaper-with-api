@@ -47,7 +47,9 @@ const handleCategoryId = async (id) => {
         <h5>${news?.author?.name}
         </h5>
     </div>
-      <button class="btn btn-primary" onclick=" handleModal('${news}')" >Show more</button>
+      <button class="btn btn-primary" onclick=" handleModal('${
+        news._id
+      }')" >Show more</button>
     </div>
   </div>
     </div>
@@ -56,7 +58,14 @@ const handleCategoryId = async (id) => {
   });
 };
 
-const handleModal = (data) => {
+const handleModal = async (data) => {
+  //   console.log(data);
+  const response = await fetch(
+    `https://openapi.programming-hero.com/api/news/${data}`
+  );
+  const data = await response.json();
+
+console.log(data);
   const modalContainer = document.getElementById("modal-container");
   const div = document.createElement("div");
   div.innerHTML = `
@@ -74,6 +83,7 @@ const handleModal = (data) => {
   modalContainer.appendChild(div);
   const modal = document.getElementById("my_modal_1");
   modal.showModal();
+ 
 };
 
 handleNews();
