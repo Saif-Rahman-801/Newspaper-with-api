@@ -47,7 +47,7 @@ const handleCategoryId = async (id) => {
         <h5>${news?.author?.name}
         </h5>
     </div>
-      <button class="btn btn-primary">Show more</button>
+      <button class="btn btn-primary" onclick=" handleModal('${news}')" >Show more</button>
     </div>
   </div>
     </div>
@@ -55,5 +55,26 @@ const handleCategoryId = async (id) => {
     cardContainer.appendChild(div);
   });
 };
+
+const handleModal = (data) => {
+  const modalContainer = document.getElementById("modal-container");
+  const div = document.createElement("div");
+  div.innerHTML = `
+
+<dialog id="my_modal_1" class="modal">
+  <form method="dialog" class="modal-box">
+    <h3 class="font-bold text-lg">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+      <button class="btn">Close</button>
+    </div>
+  </form>
+</dialog>
+    `;
+  modalContainer.appendChild(div);
+  const modal = document.getElementById("my_modal_1");
+  modal.showModal();
+};
+
 handleNews();
 handleCategoryId("01");
