@@ -15,7 +15,6 @@ const handleNews = async () => {
     linkContainer.appendChild(div);
   });
 };
-handleNews();
 
 const handleCategoryId = async (id) => {
   //   console.log(id);
@@ -26,6 +25,7 @@ const handleCategoryId = async (id) => {
   console.log(data.data);
   const newsCategory = data.data;
   const cardContainer = document.getElementById("card-container");
+  cardContainer.textContent = "";
   //   console.log(cardContainer);
   newsCategory.forEach((news) => {
     const div = document.createElement("div");
@@ -34,17 +34,17 @@ const handleCategoryId = async (id) => {
     <div class="card w-96 bg-base-100 shadow-xl">
     <figure>
           <img
-            src=${news.image_url}
+            src=${news?.image_url}
             alt="journalist"
           />
     </figure>
 <div class="card-body">
-    <h2 class="card-title">${news.title} </h2>
-    <p>${news.details.slice(0, 200)} </p>
+    <h2 class="card-title">${news?.title} </h2>
+    <p>${news?.details.slice(0, 200)} </p>
     <div class="flex justify-between">
     <div class="flex gap-3">
-        <img src=${news.author.img} alt="" class="w-[20%] rounded-full">
-        <h5>${news.author.name}
+        <img src=${news?.author?.img} alt="" class="w-[20%] rounded-full">
+        <h5>${news?.author?.name}
         </h5>
     </div>
       <button class="btn btn-primary">Show more</button>
@@ -55,3 +55,5 @@ const handleCategoryId = async (id) => {
     cardContainer.appendChild(div);
   });
 };
+handleNews();
+handleCategoryId("01");
